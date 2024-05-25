@@ -1,7 +1,13 @@
 import { useState } from "react";
 import BAButton from "../component/BAButton";
+// import Result from './pages/Result';
 
-const QuizScreen = () => {
+const Quizscreen = () => {
+  const [currentIndex, setCurrentIndex] = useState<any>(0);
+  const [marks, setMarks] = useState<any>(0);
+  const [percent, setPercent] = useState<any>(0);
+  const [display, setDisplay] = useState<string>('d-block');
+
   let questions = [
     {
       question: "HTML Stands For _________",
@@ -49,44 +55,64 @@ const QuizScreen = () => {
       correctAns: "Read Only Memory",
     },
   ];
-  const [currentIndex, setCurrentIndex] = useState<any>(0);
 
   return (
     <>
       <div className="bg-primay">
-        <div className="container">
-          <div className="border shadow rounded row ">
-            <div className=" col-lg-8">
+        <div className={`container mt-5 ${display} `}>
+          <div className="border shadow rounded row justify-content-center ">
+            <div className=" col-lg-8 my-5 border shadow rounded">
               <div className="border-bottom">Awesome Quiz App</div>
 
               <div>
-                Questions {currentIndex+1}/{questions.length}
+                Questions : {currentIndex + 1}/{questions.length}
               </div>
+              <p>
+                Score : {marks}/{questions.length}
+              </p>
+              {/* <p>Percentage : ({marks/{questions.length}})</p> */}
               <div className="display-5 py-5">
                 {" "}
                 <span>{questions[currentIndex].question}</span>
               </div>
               <div className="row justify-content-center">
                 {questions[currentIndex].options.map((a: any, i) => (
-                
-                    <div className="col-12 col-sm-10 col-md-5 col-lg-5 p-3">
-                        <button   className="bg-primary text-center btn" onClick={(a)=>{
-                            setCurrentIndex(currentIndex+1);
-                            console.log(a.target)
-                        }}>{a}</button>
-                      
-                    </div>
-                  
+                  <div className="col-12 col-sm-10 col-md-5 col-lg-5 p-3 ">
+                    <button
+                      className="bg-primary text-center btn w-100"
+                      value={a}
+                      onClick={() => {
+                        let newIndex = currentIndex + 1;
+                        if (newIndex < questions.length) {
+                          setCurrentIndex(newIndex);
+                          console.log(currentIndex);
+                          console.log(newIndex);
+                        }
+                        if (a == questions[currentIndex].correctAns) {
+                          if (marks < questions.length) {
+                            setMarks(marks + 1);
+                          }
+                        }
+                        if (newIndex < questions.length) {
+                          setCurrentIndex(newIndex);
+                        } else {
+                          setDisplay('d-none');
+                        }
+                      }}
+                    >
+                      {a}
+                    </button>
+                  </div>
                 ))}
+
+              
               </div>
             </div>
           </div>
         </div>
       </div>
-      
-      
     </>
   );
 };
 
-export default QuizScreen;
+export default Quizscreen;

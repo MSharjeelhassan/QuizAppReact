@@ -1,5 +1,5 @@
 const BAButton = (props:any)=>{
-    return ( <button>hello world</button>)
+    return ( <button className={props.className}>{props.btnValue}</button>)
 }
 
 export default BAButton;

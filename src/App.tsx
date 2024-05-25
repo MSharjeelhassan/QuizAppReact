@@ -1,12 +1,18 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import QuizScreen from './pages/quizscreen';
+import Quizscreen from './pages/Quizscreen';
+import Result from './pages/Result';
+import BAButton from './component/BAButton';
+
 
 function App() {
   
   return (
     <>
-      <QuizScreen />
-    </>
+      <Quizscreen />
+
+      <Result className = 'd-non' number='6' outof='6' percentage='45' status='pass'/>
+      
+      </>
   )
 }
 
