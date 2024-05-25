@@ -3,7 +3,7 @@ import BAButton from "../component/BAButton";
 
 const Result = (props:any) => {
 
-    const{status,outof,percentage,number,className}=props;
+    const{status,outof,percentage,number,className, click}=props;
   return (
     <>
       <div className={`container mt-5 pt-5 border shadow ${className} `}>
@@ -15,7 +15,7 @@ const Result = (props:any) => {
                     <p>Out of: {outof}</p>
                     <p>Percentage: {percentage}%</p>
                     <p>{status}</p>
-                    <BAButton btnValue = 'Restart' className='btn btn-success my-3'/>
+                    <BAButton btnValue = 'Restart' className='btn btn-success my-3' onClick={click}/>
                 </div>
             </div>
         </div>

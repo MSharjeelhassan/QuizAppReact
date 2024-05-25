@@ -1,6 +1,6 @@
 import { useState } from "react";
 import BAButton from "../component/BAButton";
-// import Result from './pages/Result';
+import Result from "./Result";
 
 const Quizscreen = () => {
   const [currentIndex, setCurrentIndex] = useState<any>(0);
@@ -55,7 +55,10 @@ const Quizscreen = () => {
       correctAns: "Read Only Memory",
     },
   ];
-
+let percentage = (marks/questions.length)*100;
+const click = ()=>{
+  setCurrentIndex (0);
+}
   return (
     <>
       <div className="bg-primay">
@@ -70,7 +73,7 @@ const Quizscreen = () => {
               <p>
                 Score : {marks}/{questions.length}
               </p>
-              {/* <p>Percentage : ({marks/{questions.length}})</p> */}
+              <p>Percentage : {percentage} %</p>
               <div className="display-5 py-5">
                 {" "}
                 <span>{questions[currentIndex].question}</span>
@@ -111,6 +114,7 @@ const Quizscreen = () => {
           </div>
         </div>
       </div>
+      <Result className = 'd-non' number={marks} outof={questions.length} percentage={percentage} status='pass' clicking={click}/>
     </>
   );
 };

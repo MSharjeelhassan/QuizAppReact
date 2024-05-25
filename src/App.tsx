@@ -10,7 +10,7 @@ function App() {
     <>
       <Quizscreen />
 
-      <Result className = 'd-non' number='6' outof='6' percentage='45' status='pass'/>
+      {/* <Result className = 'd-non' number='6' outof='6' percentage='45' status='pass'/> */}
       
       </>
   )
