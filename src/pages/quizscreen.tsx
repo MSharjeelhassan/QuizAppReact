@@ -5,8 +5,8 @@ import Result from "./Result";
 const Quizscreen = () => {
   const [currentIndex, setCurrentIndex] = useState<any>(0);
   const [marks, setMarks] = useState<any>(0);
-  const [percent, setPercent] = useState<any>(0);
-  const [display, setDisplay] = useState<string>('d-block');
+  const [final, setFinal] = useState<any>(false);
+  // const [display, setDisplay] = useState<string>('d-block');
 
   let questions = [
     {
@@ -56,13 +56,21 @@ const Quizscreen = () => {
     },
   ];
 let percentage = (marks/questions.length)*100;
-const click = ()=>{
+const clickResult = ()=>{
   setCurrentIndex (0);
+  setMarks(0);
+  setFinal(false)
+  console.log('i am working')
+
 }
   return (
-    <>
-      <div className="bg-primay">
-        <div className={`container mt-5 ${display} `}>
+    <>{final == true?
+      <Result className = 'd-non' number={marks} outof={questions.length} percentage={percentage} status='pass' clicking={clickResult}/>
+    
+    :
+      
+      (<div className="bg-primay">
+        <div className={`container mt-5`}>
           <div className="border shadow rounded row justify-content-center ">
             <div className=" col-lg-8 my-5 border shadow rounded">
               <div className="border-bottom">Awesome Quiz App</div>
@@ -92,14 +100,18 @@ const click = ()=>{
                           console.log(newIndex);
                         }
                         if (a == questions[currentIndex].correctAns) {
-                          if (marks < questions.length) {
+                          // if (marks < questions.length) {
                             setMarks(marks + 1);
-                          }
+                          // }
                         }
                         if (newIndex < questions.length) {
                           setCurrentIndex(newIndex);
+                          console.log(newIndex)
                         } else {
-                          setDisplay('d-none');
+                          // setDisplay('d-none');
+                          setFinal(true)
+                          console.log(newIndex)
+                          console.log(currentIndex)
                         }
                       }}
                     >
@@ -113,8 +125,7 @@ const click = ()=>{
             </div>
           </div>
         </div>
-      </div>
-      <Result className = 'd-non' number={marks} outof={questions.length} percentage={percentage} status='pass' clicking={click}/>
+      </div>)}
     </>
   );
 };

@@ -1,5 +1,5 @@
 const BAButton = (props:any)=>{
-    return ( <button className={props.className}>{props.btnValue}</button>)
+    return ( <button onClick={props.onClick} className={props.className}>{props.btnValue} </button>)
 }
 
 export default BAButton;
